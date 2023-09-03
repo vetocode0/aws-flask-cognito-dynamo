@@ -3,7 +3,7 @@ import mimetypes
 import os
 import boto3
 
-BUCKET = "hc-flask-assets"
+BUCKET = "vcp-flask-assets"
 
 def write_to_s3(bucket_name: str, from_file: str, to_file: str, mimetype) -> None:
     s3 = boto3.resource("s3")
