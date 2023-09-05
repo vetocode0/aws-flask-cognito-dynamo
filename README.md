@@ -26,3 +26,7 @@ Python api with cognito integration and dynamo db backend.
 │   on s3_buckets/main.tf line 1, in resource "aws_s3_bucket" "flask_static_assets":
 │    1: resource "aws_s3_bucket" "flask_static_assets" {
 │ 
+
+
+terraform plan --var-file="env.dev.tfvars" 
+terraform apply --var-file="env.dev.tfvars"
