@@ -1,27 +1,32 @@
 terraform {
-    backend "s3" {}
+  backend "s3" {
+    region = "us-east-2"
+    key = "terraformstatefile"
+    bucket = "vcprototypes-dev-terraform-state"
+    profile = "default"
+  }
 }
 
 provider "aws" {
-    region = var.aws_region
+  region = var.aws_region
 }
 
 data "aws_caller_identity" "current" {}
 
 module "api_gateway" {
-    source = "./api_gate"
-    project_name = var.project_name
-    stage_name = var.stage_name
+  source       = "./api_gateway"
+  project_name = var.project_name
+  stage_name   = var.stage_name
 }
 
 module "cognito" {
-    source = "./cognito"
-    url = module.api_gateway.flask_url
-    project_name = var.project_name
+  source       = "./cognito"
+  url          = module.api_gateway.flask_url
+  project_name = var.project_name
 }
 
 module "s3_buckets" {
-    source = "./s3_buckets"
-    project_name = var.project_name
-    aws_region = var.aws_region
+  source       = "./s3_buckets"
+  project_name = var.project_name
+  aws_region   = var.aws_region
 }

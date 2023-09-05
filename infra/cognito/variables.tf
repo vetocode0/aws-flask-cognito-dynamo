@@ -1,7 +1,7 @@
-variable url {
+variable "url" {
   type = string
 }
 
-variable project_name {
+variable "project_name" {
   type = string
 }

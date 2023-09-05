@@ -1,28 +1,32 @@
 variable "aws_region" {
-    type = string
+  type = string
 }
 
 variable "environment" {
-    type = string
+  type = string
 }
 
 variable "tfstate_bucket" {
-    type = string
+  type = string
 }
 
 variable "tfstate_bucket_region" {
-    type = string
+  type = string
+}
+
+variable "tfstate_bucket_key" {
+  type = string
 }
 
 variable "serverless_deploy_bucket" {
-    type = string
+  type = string
 }
 
 variable "project_name" {
-    type = string
+  type = string
 }
 
 variable "stage_name" {
-    type = string
+  type = string
 }
 

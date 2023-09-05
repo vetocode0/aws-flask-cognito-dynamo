@@ -19,12 +19,12 @@ provider:
     name: ${ssm:/serverless/deployment-bucket-id}
     serverSideEncryption: AES256
   apiGateway:
-    restApiId: ${ssm:/flask/api-gateway/rest-api-id}
-    restApiRootResourceId: ${ssm:/flask/api-gateway/root-resource-id}
+    restApiId: ${ssm:/python-cognito/api-gateway/rest-api-id}
+    restApiRootResourceId: ${ssm:/python-cognito/api-gateway/root-resource-id}
 
 functions:
   app:
-    role: ${ssm:/flask/lambda-iam-role/arn}
+    role: ${ssm:/python-cognito/lambda-iam-role/arn}
     handler: wsgi_handler.handler
     package: 
       include:
@@ -37,14 +37,14 @@ functions:
       - http: ANY /
       - http: "ANY /{proxy+}"
     environment:
-      SECRET_KEY: ${ssm:/flask/flask-secret}
-      JWT_PRIVATE_KEY: ${ssm:/flask/jwt-private-key}
-      JWT_SECRET_KEY: ${ssm:/flask/jwt-secret}
-      AWS_COGNITO_DOMAIN: ${ssm:/flask/cognito-domain}
-      AWS_COGNITO_USER_POOL_ID: ${ssm:/flask/user-pool-id}
-      AWS_COGNITO_USER_POOL_CLIENT_ID: ${ssm:/flask/user-pool-client-id}
-      AWS_COGNITO_USER_POOL_CLIENT_SECRET: ${ssm:/flask/user-pool-client-secret}
-      SITE_URL: ${ssm:/flask/api-gateway/url}
+      SECRET_KEY: ${ssm:/python-cognito/flask-secret}
+      JWT_PRIVATE_KEY: ${ssm:/python-cognito/jwt-private-key}
+      JWT_SECRET_KEY: ${ssm:/python-cognito/jwt-secret}
+      AWS_COGNITO_DOMAIN: ${ssm:/python-cognito/cognito-domain}
+      AWS_COGNITO_USER_POOL_ID: ${ssm:/python-cognito/user-pool-id}
+      AWS_COGNITO_USER_POOL_CLIENT_ID: ${ssm:/python-cognito/user-pool-client-id}
+      AWS_COGNITO_USER_POOL_CLIENT_SECRET: ${ssm:/python-cognito/user-pool-client-secret}
+      SITE_URL: ${ssm:/python-cognito/api-gateway/url}
 
 custom:
   pythonRequirements:
@@ -56,4 +56,3 @@ custom:
   prune:
     automatic: true
     number: 3
-    
