@@ -30,3 +30,10 @@ module "s3_buckets" {
   project_name = var.project_name
   aws_region   = var.aws_region
 }
+
+module "flask_app" {
+  source = "./flask_app"
+  project_name = var.project_name
+  aws_account_id = data.aws_caller_identity.current.account_id
+  aws_region = var.aws_region
+}

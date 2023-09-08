@@ -16,7 +16,7 @@ provider:
   architecture: x86_64
   runtime: python3.11
   deploymentBucket:
-    name: ${ssm:/serverless/deployment-bucket-id}
+    name: ${ssm:/python-cognito/serverless-deployment-bucket-id}
     serverSideEncryption: AES256
   apiGateway:
     restApiId: ${ssm:/python-cognito/api-gateway/rest-api-id}
